@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>View Users</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+    <style>
+        :root {
+            --primary-color: #6c5ce7; /* Purple */
+            --secondary-color: #00b894; /* Teal */
+            --danger-color: #d63031; /* Red */
+            --light-color: #ecf0f1; /* Light grey */
+            --dark-color: #2d3436; /* Dark grey */
+        }
+
+        body {
+            background-color: #f0f4f7;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-top: 30px;
+        }
+
+        table {
+            background-color: var(--light-color);
+            border-radius: 8px;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        table th, table td {
+            padding: 12px;
+            text-align: center;
+            border-bottom: 1px solid var(--dark-color);
+        }
+
+        table th {
+            background-color: var(--primary-color);
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        table tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        table tr:hover {
+            background-color: var(--primary-color);
+            color: #fff;
+            transform: scale(1.02);
+            transition: all 0.3s ease;
+        }
+
+        button a {
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-transform: uppercase;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-success {
+            background-color: var(--secondary-color);
+            border: none;
+        }
+
+        .btn-danger {
+            background-color: var(--danger-color);
+            border: none;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            border: none;
+        }
+
+        .btn-block {
+            background-color: var(--primary-color);
+            color: #fff;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            margin-top: 20px;
+            padding: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-block:hover {
+            background-color: #5e4bdb;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        a:hover {
+            color: #fff !important;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>View Users</h1>
+        
+        <table class="table table-bordered">
+            <tr>
+                <th>Id</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Date of Birth</th>
+                <th>Gender</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            <tr th:each="user : ${usersList}">
+                <td th:text="${user.id}"></td>
+                <td th:text="${user.firstName}"></td>
+                <td th:text="${user.lastName}"></td>
+                <td th:text="${user.email}"></td>
+                <td th:text="${user.dob}"></td>
+                <td th:text="${user.gender}"></td>
+                <td>
+                    <button type="button" class="btn btn-success">
+                        <a th:href="@{/editUser/{id}(id=${user.id})}">Edit</a>
+                    </button>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-danger">
+                        <a th:href="@{/deleteUser/{id}(id=${user.id})}">Delete</a>
+                    </button>
+                </td>
+            </tr>
+        </table>
+
+        <button type="button" class="btn btn-primary btn-block">
+            <a href="/addUser">Add New User</a>
+        </button>
+    </div>
+</body>
+</html>

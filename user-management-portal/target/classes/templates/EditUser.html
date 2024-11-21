@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Edit User</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <style>
+        :root {
+            --primary-color: #6c5ce7; /* Purple */
+            --secondary-color: #00b894; /* Teal */
+            --danger-color: #d63031; /* Red */
+            --light-color: #ecf0f1; /* Light grey */
+            --dark-color: #2d3436; /* Dark grey */
+        }
+
+        body {
+            background-color: #f0f4f7;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-top: 30px;
+        }
+
+        .form-group label {
+            color: var(--dark-color);
+            font-weight: 600;
+        }
+
+        .form-control {
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            font-size: 1rem;
+            border: 1px solid #ddd;
+            transition: all 0.3s ease;
+            width: 100%; /* Full width */
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 8px rgba(108, 92, 231, 0.5);
+        }
+
+        .form-check-input {
+            margin-top: 0.3rem;
+        }
+
+        .btn-success {
+            background-color: var(--secondary-color);
+            border: none;
+            font-size: 1.1rem;
+            padding: 12px 20px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-success:hover {
+            background-color: #02a676;
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-block {
+            background-color: var(--primary-color);
+            color: #fff;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            margin-top: 20px;
+            padding: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-block:hover {
+            background-color: #5e4bdb;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        a:hover {
+            color: #fff !important;
+            text-decoration: none;
+        }
+
+        .form-row {
+            margin-bottom: 15px;
+        }
+
+        .form-row .form-group {
+            width: 100%;
+        }
+
+        .form-group .col-md-12 {
+            padding-left: 0;
+            padding-right: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Edit User</h1>
+        
+        <form th:action="@{/editSaveUser}" th:object="${user}" method="post">
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <input type="hidden" th:field="*{id}" class="form-control"/>
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label for="firstName">First Name</label>
+                    <input type="text" th:field="*{firstName}" id="firstName" class="form-control" required="required"/>
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label for="lastName">Last Name</label>
+                    <input type="text" th:field="*{lastName}" id="lastName" class="form-control" required="required"/>
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label>Gender</label>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input" th:field="*{gender}" value="Male"/> Male
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input" th:field="*{gender}" value="Female"/> Female
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input" th:field="*{gender}" value="Other"/> Other
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label for="dob">Date of Birth</label>
+                    <input type="date" th:field="*{dob}" id="dob" class="form-control" required="required"/>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label for="email">Email</label>
+                    <input type="email" th:field="*{email}" id="email" class="form-control" required="required"/>
+                </div>
+            </div>
+
+            <div class="form-row p-2">
+                <div class="col-md-12 text-center">
+                    <button class="btn btn-success btn-block">Update</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
++
